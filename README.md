@@ -19,7 +19,7 @@ O script Python está dividido em três partes principais:
    - Um loop infinito é executado enquanto a frase do usuário não for "FIM".
    - A função `reconhecer_fala` é usada para capturar a fala do usuário.
    - A frase reconhecida é enviada para o chatbot usando a função `enviar_mensagem`.
-   - A resposta do chatbot é recebida e a função `remover_asteriscos` é usada para remover caracteres especiais.
+   - A resposta do chatbot é recebida e a função `remover_caracteres_especiais` é usada para remover caracteres especiais.
    - A resposta do chatbot é falada para o usuário usando a função `falar`.
    - A próxima frase do usuário é capturada.
    - A função `encerrar_conversa` é chamada para finalizar o chatbot.
@@ -29,7 +29,7 @@ O script Python está dividido em três partes principais:
 - `iniciar_conversa()`: Inicializa o chatbot, configurando o modelo e o motor de síntese de voz.
 - `reconhecer_fala()`: Captura a fala do usuário usando o Speech Recognition e retorna a frase reconhecida.
 - `enviar_mensagem(frase)`: Envia a frase para o chatbot e retorna a resposta.
-- `remover_asteriscos(texto)`: Remove caracteres especiais do texto.
+- `remover_caracteres_especiais(texto)`: Remove caracteres especiais do texto.
 - `falar(frase)`: Sintetiza a frase em voz alta usando o Pyttsx3.
 - `encerrar_conversa()`: Finaliza o chatbot, liberando recursos.
 
