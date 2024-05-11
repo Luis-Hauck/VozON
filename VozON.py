@@ -40,9 +40,9 @@ def falar(frase):
 
 
 def remover_asteriscos(texto):
-    texto_sem_asteriscos = texto
+    texto_sem_asteriscos = ""
     for caractere in texto:
-        if caractere != "*":
+        if caractere not in "*!@$%&''-+.*/=+-_":
             texto_sem_asteriscos += caractere
     return texto_sem_asteriscos
 
@@ -74,7 +74,7 @@ def reconhecer_fala():
 
                 # Retorna a frase reconhecida.
 
-                return remover_asteriscos(frase_reconhecida)
+                return frase_reconhecida
 
             except sr.UnknownValueError:
                 falar('Não entendi o que você disse.')
@@ -91,7 +91,7 @@ prompt = reconhecer_fala()
 
 while prompt != 'fim':
     response = chat.send_message(prompt)
-    print(f' Resposta:  {falar(response.text)}')
+    falar(remover_asteriscos(response.text))
     prompt = reconhecer_fala()
 
 falar('Você encerrou a conversa')
