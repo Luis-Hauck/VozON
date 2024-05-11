@@ -39,7 +39,7 @@ def falar(frase):
     motor_de_sistese_de_fala.stop()
 
 
-def remover_asteriscos(texto):
+def remover_caracteres_especiais(texto):
     texto_sem_asteriscos = ""
     for caractere in texto:
         if caractere not in "*!@$%&''-+.*/=+-_":
@@ -91,7 +91,7 @@ prompt = reconhecer_fala()
 
 while prompt != 'fim':
     response = chat.send_message(prompt)
-    falar(remover_asteriscos(response.text))
+    falar(remover_caracteres_especiais(response.text))
     prompt = reconhecer_fala()
 
 falar('Você encerrou a conversa')

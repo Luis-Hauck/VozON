@@ -41,4 +41,4 @@ Para usar o script, basta salvá-lo como um arquivo Python e executá-lo no term
 
 - Este script é apenas um exemplo e pode ser adaptado para atender às suas necessidades específicas.
 - Certifique-se de ter as bibliotecas `google.generativeai`, `speech_recognition` e `pyttsx3` instaladas em seu sistema.
-- A chave da API do Google é necessária para usar a API Generative AI. Você pode obter uma chave gratuita em https://cloud.google.com/.
+- A chave da API do Google é necessária para usar a API Generative AI. Você pode obter uma chave gratuita em https://aistudio.google.com/
