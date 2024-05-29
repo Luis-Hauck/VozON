@@ -15,8 +15,8 @@ Antes de usar o VozON, você precisa configurar algumas coisas:
    - Você pode ajustar as configurações de geração, como o número de candidatos e a temperatura.
 
 3. **Instalação das seguintes bibliotecas:**
-   - `google.generativeai` Para usar a Gemini
-   - `speech_recognition` para reconhecer a fala do usuário
+   - `google.generativeai` Para usar a Gemini.
+   - `speech_recognition` para reconhecer a fala do usuário.
    - `pyttsx3` para sintetizar a resposta gerada.
 ## Funcionalidades principais
 O VozON oferece as seguintes funcionalidades:
