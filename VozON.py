@@ -2,7 +2,9 @@ import google.generativeai as genai
 import speech_recognition as sr
 import pyttsx3
 
-google_api_key = ''
+# Sua chave da API Generative AI do Google
+google_api_key = 'AIzaSyBt0yN_f8_XdGtsrYsY0qaHcqcF9AtZv5A'
+# Configura a API Generative AI com sua chave
 genai.configure(api_key=google_api_key)
 
 generation_config = {
@@ -10,16 +12,13 @@ generation_config = {
     'temperature': 0.5,
 }
 
-safety_config = {
-    'Harassment': 'BLOCK_SOME',
-    'Hate': 'BLOCK_SOME',
-    'Sexual': 'BLOCK_SOME',
-}
+# Configurações para gerar texto com o modelo Gemini 1.0 Pro
 
 model = genai.GenerativeModel(model_name='gemini-1.0-pro',
                               generation_config=generation_config
                               )
 
+# Carrega o modelo Gemini 1.0 Pro com as configurações definidas
 chat = model.start_chat(history=[])
 
 # Inicializa o mecanismo de sistese de voz.
@@ -39,6 +38,7 @@ def falar(frase):
     motor_de_sistese_de_fala.stop()
 
 
+# Remove os caracteres especiais do texto gerado
 def remover_caracteres_especiais(texto):
     texto_sem_asteriscos = ""
     for caractere in texto:
@@ -63,7 +63,8 @@ def reconhecer_fala():
         # Escuta o áudio do microfone.
         audio = microfone.listen(source)
 
-        # Tenta reconhecer a fala três vezes.
+        # Tenta reconhecer a fala 5 vezes.
+
         for _ in range(5):
             try:
                 # Reconhece a fala do usuário usando o Google Speech Recognition.
@@ -77,21 +78,31 @@ def reconhecer_fala():
                 return frase_reconhecida
 
             except sr.UnknownValueError:
-                falar('Não entendi o que você disse.')
+                falar('Não entendi o que você disse, vou encerrar a conversa.')
+                break
             except sr.RequestError as e:
-                falar('Ocorreu um erro ao reconhecer a fala: {0}'.format(e))
+                falar(f'Ocorreu um erro ao reconhecer a fala: {e}')
+                break
 
     return None
 
 
+# Saudação inicial
 falar('Seja bem vindo ao VozON')
 falar('Para encerrar a conversa diga FIM')
 
-prompt = reconhecer_fala()
 
-while prompt != 'fim':
-    response = chat.send_message(prompt)
-    falar(remover_caracteres_especiais(response.text))
+# Loop principal da conversa
+def iniciar_conversa():
     prompt = reconhecer_fala()
+    while prompt != 'fim':
+        # Envia a fala do usuário para o modelo gerar uma resposta
+        response = chat.send_message(prompt)
+        # Remove caracteres especiais da resposta do modelo (opcional)
+        falar(remover_caracteres_especiais(response.text))
+        # Obtém a próxima fala do usuário
+        prompt = reconhecer_fala()
+    falar('Você encerrou a conversa')
 
-falar('Você encerrou a conversa')
+
+iniciar_conversa()
